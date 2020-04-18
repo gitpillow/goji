@@ -34,3 +34,21 @@ func TestSliceForEach(t *testing.T) {
 	assert.NotNil(t, err)
 	fmt.Println(err)
 }
+
+func TestSliceForEachBackward(t *testing.T) {
+	sli := []string{"a", "bb", "ccc"}
+	charCount := 0
+	SliceForEachBackward(sli, func(i int, item interface{}) error {
+		charCount += len(item.(string))
+		fmt.Println(i, item)
+		return nil
+	})
+	assert.Equal(t, 6, charCount)
+
+	sli2 := "aaa"
+	err := SliceForEachBackward(sli2, func(i int, item interface{}) error {
+		return nil
+	})
+	assert.NotNil(t, err)
+	fmt.Println(err)
+}
